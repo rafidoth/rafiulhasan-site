@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Technology {
+  TYPESCRIPT
+  JAVASCRIPT
+  PYTHON
+  GO
+  RUST
+  JAVA
+  CPP
+  C
+  REACT
+  NEXTJS
+  VUEJS
+  ANGULAR
+  SVELTE
+  NODEJS
+  EXPRESS
+  NESTJS
+  DJANGO
+  FLASK
+  FASTAPI
+  POSTGRESQL
+  MYSQL
+  MONGODB
+  REDIS
+  SQLITE
+  PRISMA
+  DOCKER
+  KUBERNETES
+  AWS
+  GCP
+  AZURE
+  LINUX
+  GIT
+  GRAPHQL
+  REST
+  GRPC
+  TAILWINDCSS
+  CSS
+  HTML
+  FIREBASE
+  SUPABASE
+  VERCEL
+  NGINX
+  RABBITMQ
+  KAFKA
+  ELASTICSEARCH
+  TERRAFORM
+  GITHUB_ACTIONS
+}
+
+model Project {
+  id           String       @id @default(cuid())
+  title        String
+  slug         String       @unique
+  description  String
+  content      String
+  technologies Technology[]
+  githubUrl    String?
+  liveUrl      String?
+  featured     Boolean      @default(false)
+  order        Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model AboutMe {
+  id        String   @id @default(cuid())
+  content   String
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
