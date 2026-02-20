@@ -23,7 +23,7 @@ export default function RootLayout({
         <ClerkProvider>
             <html lang="en">
                 <body className={`antialiased dark ${ibm.className} selection:bg-primary selection:text-black`}>
-                    <TooltipProvider>{children}</TooltipProvider>
+                    {children}
                 </body>
             </html>
         </ClerkProvider>
