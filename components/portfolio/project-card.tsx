@@ -9,7 +9,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <div className="w-[400px] group relative flex flex-col gap-3 rounded-lg border border-border/50 bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 hover:bg-card hover:shadow-md">
+        <div className="w-full md:w-[400px] group relative flex flex-col gap-3 rounded-lg border border-border/50 bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 hover:bg-card hover:shadow-md">
             <div className="flex items-start justify-between gap-3">
                 <Link
                     href={`/projects/${project.slug}`}
