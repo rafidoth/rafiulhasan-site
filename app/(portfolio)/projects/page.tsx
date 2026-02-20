@@ -1,7 +1,7 @@
 import { getProjects } from "@/lib/queries/projects"
 import { ProjectCard } from "@/components/portfolio/project-card"
 import { Separator } from "@/components/ui/separator"
-
+export const revalidate = 1800;
 export default async function ProjectsPage() {
     const projects = await getProjects()
 
@@ -15,14 +15,14 @@ export default async function ProjectsPage() {
             </div>
 
             {projects.length > 0 ? (
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="flex gap-4 flex-col md:flex-row md:flex-wrap">
                     {projects.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
             ) : (
                 <p className="text-muted-foreground">
-                    No projects yet. Add some through the CMS.
+                    Sorry, for inconvenience, projects couldn't be pulled due to network issue.
                 </p>
             )}
         </div>

@@ -5,7 +5,7 @@ import { TechBadge } from "@/components/portfolio/tech-badge"
 import { Separator } from "@/components/ui/separator"
 import { ArrowLeft, ExternalLink, Github } from "lucide-react"
 import Link from "next/link"
-
+export const revalidate = 1800;
 type Props = {
     params: Promise<{ slug: string }>
 }
