@@ -15,7 +15,7 @@ export function FooterSection() {
                     GitHub
                 </Link>
                 <Link
-                    href="https://linkedin.com/in/rafiulhasan"
+                    href="https://www.linkedin.com/in/rafidoth"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground transition-colors hover:text-primary"
