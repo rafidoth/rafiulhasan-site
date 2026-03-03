@@ -1,9 +1,10 @@
+import { getAllBlogs } from "@/lib/blog"
+import { BlogCard } from "@/components/portfolio/blog-card"
 import { Separator } from "@/components/ui/separator"
-import Link from "next/link"
-
-export const revalidate = 1800;
 
 export default function BlogsPage() {
+    const blogs = getAllBlogs()
+
     return (
         <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2">
@@ -13,19 +14,18 @@ export default function BlogsPage() {
                 <Separator className="bg-border/30" />
             </div>
 
-            <p className="text-muted-foreground">
-                Coming soon. Stay tuned for articles on software engineering,
-                system design, and more. Currently I've listed some in my
-                <Link
-                    href="https://rafiulhasan.notion.site/"
-                    target="_blank"
-                    className="underline underline-offset-3 mx-2 cursor-pointer text-primary hover:opacity-80"
-                >
-                    notion blog
-                </Link>
-                .
-
-            </p>
+            {blogs.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                    {blogs.map((blog) => (
+                        <BlogCard key={blog.slug} blog={blog} />
+                    ))}
+                </div>
+            ) : (
+                <p className="text-muted-foreground">
+                    No blog posts yet. Stay tuned for articles on software
+                    engineering, system design, and more.
+                </p>
+            )}
         </div>
     )
 }
