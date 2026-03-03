@@ -147,7 +147,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-mono: var(--font-mono-jetbrains);
   --font-serif: var(--font-serif);
   --font-bangla: var(--font-noto-bangla);
 
@@ -170,30 +170,30 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-white;
   }
 }
 
 .prose-custom h1 {
-  @apply mb-4 mt-8 text-2xl font-bold text-foreground;
+  @apply mb-4 mt-8 text-2xl font-bold text-white;
 }
 .prose-custom h2 {
-  @apply mb-3 mt-6 text-xl font-semibold text-foreground;
+  @apply mb-3 mt-6 text-xl font-semibold;
 }
 .prose-custom h3 {
-  @apply mb-2 mt-5 text-lg font-semibold text-foreground;
+  @apply mb-2 mt-5 text-lg font-semibold;
 }
 .prose-custom h4 {
-  @apply mb-2 mt-4 text-base font-semibold text-foreground;
+  @apply mb-2 mt-4 text-base font-semibold;
 }
 .prose-custom p {
-  @apply mb-4 leading-relaxed text-foreground/80;
+  @apply mb-4 leading-relaxed;
 }
 .prose-custom a {
   @apply text-primary underline decoration-primary/30 underline-offset-2 transition-colors hover:decoration-primary;
 }
 .prose-custom strong {
-  @apply font-semibold text-foreground;
+  @apply font-semibold text-white;
 }
 .prose-custom em {
   @apply italic;
@@ -205,7 +205,7 @@
   @apply mb-4 ml-6 list-decimal space-y-1;
 }
 .prose-custom li {
-  @apply text-foreground/80;
+  @apply text-white/80;
 }
 .prose-custom blockquote {
   @apply my-4 border-l-2 border-primary/30 pl-4 italic text-muted-foreground;
@@ -214,7 +214,7 @@
   @apply my-4 overflow-x-auto rounded-lg border border-border/50 bg-card p-4 text-sm;
 }
 .prose-custom code {
-  @apply rounded bg-secondary/50 px-1.5 py-0.5 text-sm font-medium text-foreground;
+  @apply rounded bg-secondary/50 px-1.5 py-0.5 text-sm font-medium text-white;
 }
 .prose-custom pre code {
   @apply bg-transparent p-0;

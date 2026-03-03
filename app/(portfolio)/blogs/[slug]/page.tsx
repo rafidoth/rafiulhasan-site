@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import { cookies } from "next/headers"
 import {
     getAllBlogSlugs,
     getBlogBySlug,
@@ -7,9 +8,6 @@ import {
     type BlogMeta,
 } from "@/lib/blog"
 import { BlogLanguageToggle } from "@/components/portfolio/blog-language-toggle"
-import { Separator } from "@/components/ui/separator"
-import { ArrowLeft } from "lucide-react"
-import Link from "next/link"
 
 type Props = {
     params: Promise<{ slug: string }>
@@ -28,10 +26,18 @@ export default async function BlogDetailPage({ params }: Props) {
         notFound()
     }
 
-    // Default to English, fall back to Bengali
-    const defaultLang: Language = availableLanguages.includes("en")
-        ? "en"
-        : "bn"
+    // Detect if visitor is from Bangladesh via geo cookie set in middleware
+    const cookieStore = await cookies()
+    const country = cookieStore.get("geo_country")?.value
+    const isBangladesh = country === "BD"
+
+    // Default to Bangla for Bangladeshi visitors (if available), otherwise English
+    const defaultLang: Language =
+        isBangladesh && availableLanguages.includes("bn")
+            ? "bn"
+            : availableLanguages.includes("en")
+                ? "en"
+                : "bn"
 
     // Load both language versions (null if not available)
     const enPost = getBlogBySlug(slug, "en")
@@ -43,16 +49,7 @@ export default async function BlogDetailPage({ params }: Props) {
     }
 
     return (
-        <div className="flex flex-col gap-8 bg-background/80 p-2 rounded border ">
-            <Link
-                href="/blogs"
-                className="group flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-                <ArrowLeft className="size-3 transition-transform group-hover:-translate-x-0.5" />
-                Back to blogs
-            </Link>
-
-            <Separator className="bg-border/30" />
+        <div className="flex flex-col gap-8  ">
 
             <BlogLanguageToggle
                 slug={slug}

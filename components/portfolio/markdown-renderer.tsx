@@ -6,7 +6,8 @@ import rehypeRaw from "rehype-raw"
 import { cn } from "@/lib/utils"
 import { useEffect, useState, type JSX } from "react"
 import { createHighlighter, type Highlighter } from "shiki"
-import { Tiro_Bangla } from "next/font/google"
+import { JetBrains_Mono } from "next/font/google"
+
 
 type MarkdownRendererProps = {
     content: string
@@ -18,7 +19,7 @@ let highlighterPromise: Promise<Highlighter> | null = null
 function getHighlighter() {
     if (!highlighterPromise) {
         highlighterPromise = createHighlighter({
-            themes: ["github-dark-default"],
+            themes: ["vitesse-black", "gruvbox-dark-hard", "github-dark-default"],
             langs: [
                 "typescript",
                 "javascript",
@@ -44,8 +45,14 @@ function getHighlighter() {
     return highlighterPromise
 }
 
+const jetBrainsMono = JetBrains_Mono({
+    weight: ["400"],
+    subsets: ["latin"],
+    variable: "--font-mono-jetbrains",
+})
+
 function CodeBlock({
-    className = "font-mono",
+    className,
     children,
     ...props
 }: JSX.IntrinsicElements["code"]) {
@@ -65,9 +72,12 @@ function CodeBlock({
 
             const result = highlighter.codeToHtml(code, {
                 lang: langToUse,
-                theme: "github-dark-default",
+                theme: "gruvbox-dark-hard",
             })
-            setHtml(result)
+
+            const cleanHtml = result.replace(/font-family:[^;]+;/g, "")
+
+            setHtml(cleanHtml)
         })
 
         return () => {
@@ -78,29 +88,49 @@ function CodeBlock({
     // Inline code (no language)
     if (!lang) {
         return (
-            <code className={className} {...props}>
+            <code
+                className={cn("font-mono", jetBrainsMono.className, className)}
+                {...props}
+            >
                 {children}
             </code>
         )
     }
 
-    // While loading, render plain code block
+    // Loading state
     if (!html) {
         return (
-            <code className={className} {...props}>
+            <code
+                className={cn("font-mono block", jetBrainsMono.className, className)}
+                {...props}
+            >
                 {children}
             </code>
         )
     }
 
+    // 3. Rendered Shiki HTML
+    // - style sets the actual font-family so <pre> and <code> inside can inherit it
+    // - jetBrainsMono.className registers the --font-mono-jetbrains CSS variable
+    // - [&>pre]:![font-family:inherit] is the correct Tailwind arbitrary syntax
+    //   (font-inherit is NOT a valid Tailwind utility and does nothing)
     return (
         <span
             dangerouslySetInnerHTML={{ __html: html }}
-            className="[&>pre]:!my-0 [&>pre]:!rounded-lg [&>pre]:!border [&>pre]:!border-border/50 [&>pre]:!p-4 [&>pre]:!text-sm"
+            style={{ fontFamily: "var(--font-mono-jetbrains), monospace" }}
+            className={cn(
+                jetBrainsMono.className,
+                "[&>pre]:![font-family:inherit]",
+                "[&>pre_code]:![font-family:inherit]",
+                "[&>pre]:!my-0",
+                "[&>pre]:!rounded-xl",
+                "[&>pre]:!border-none",
+                "[&>pre]:!p-10",
+                "[&>pre]:!text-sm",
+            )}
         />
     )
 }
-
 
 export function MarkdownRenderer({
     content,
@@ -109,7 +139,7 @@ export function MarkdownRenderer({
     return (
         <div
             className={cn(
-                "prose-custom max-w-none text-foreground",
+                "prose-custom max-w-none ",
                 className
             )}
         >
@@ -117,7 +147,11 @@ export function MarkdownRenderer({
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
                 components={{
-                    code: CodeBlock,
+                    code: ({ className, children, ...props }) => (
+                        <CodeBlock className={className} {...props}>
+                            {children}
+                        </CodeBlock>
+                    ),
                     pre: ({ children }) => <>{children}</>,
                 }}
             >

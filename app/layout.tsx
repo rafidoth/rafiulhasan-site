@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { IBM_Plex_Serif, Noto_Sans_Bengali, Tiro_Bangla } from "next/font/google";
+import { IBM_Plex_Serif, JetBrains_Mono, Noto_Sans_Bengali, Tiro_Bangla } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
@@ -26,6 +26,12 @@ const tiroBangla = Tiro_Bangla({
     variable: "--font-tiro-bangla",
 })
 
+const jetBrainsMono = JetBrains_Mono({
+    weight: ["400"],
+    subsets: ["latin"],
+    variable: "--font-mono-jetbrains",
+})
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -34,7 +40,7 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html lang="en">
-                <body className={`antialiased dark ${ibm.className} ${notoBangla.variable} ${tiroBangla.variable} selection:bg-primary selection:text-black`}>
+                <body className={`antialiased dark ${ibm.className} ${jetBrainsMono.variable} ${notoBangla.variable} ${tiroBangla.variable} selection:bg-primary selection:text-black`}>
                     {children}
                 </body>
             </html>

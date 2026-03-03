@@ -13,6 +13,19 @@ export default clerkMiddleware(async (auth, req) => {
             return NextResponse.redirect(signInUrl)
         }
     }
+
+    // Set geo_country cookie from Vercel's IP geolocation header
+    const country = req.headers.get("x-vercel-ip-country") ?? ""
+    const response = NextResponse.next()
+    if (country) {
+        response.cookies.set("geo_country", country, {
+            path: "/",
+            httpOnly: false,
+            sameSite: "lax",
+            maxAge: 60 * 60, // 1 hour
+        })
+    }
+    return response
 })
 
 export const config = {

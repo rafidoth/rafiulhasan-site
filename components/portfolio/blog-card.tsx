@@ -12,7 +12,7 @@ export function BlogCard({ blog }: BlogCardProps) {
     return (
         <Link
             href={`/blogs/${blog.slug}`}
-            className="group flex flex-col gap-3 rounded-lg border border-border/50 bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 hover:bg-card hover:shadow-md"
+            className="group flex flex-col gap-3 rounded-lg bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 hover:bg-card hover:shadow-md"
         >
             <div className="flex items-start justify-between gap-3">
                 <h2 className="text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
