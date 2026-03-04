@@ -123,10 +123,14 @@ function CodeBlock({
                 "[&>pre]:![font-family:inherit]",
                 "[&>pre_code]:![font-family:inherit]",
                 "[&>pre]:!my-0",
-                "[&>pre]:!rounded-xl",
+                "[&>pre]:!rounded-lg",
+                "[&>pre]:sm:!rounded-xl",
                 "[&>pre]:!border-none",
-                "[&>pre]:!p-10",
-                "[&>pre]:!text-sm",
+                "[&>pre]:!p-3",
+                "[&>pre]:sm:!p-5",
+                "[&>pre]:md:!p-10",
+                "[&>pre]:!text-xs",
+                "[&>pre]:sm:!text-sm",
             )}
         />
     )
@@ -139,7 +143,7 @@ export function MarkdownRenderer({
     return (
         <div
             className={cn(
-                "prose-custom max-w-none ",
+                "prose-custom max-w-none overflow-hidden",
                 className
             )}
         >
@@ -153,6 +157,11 @@ export function MarkdownRenderer({
                         </CodeBlock>
                     ),
                     pre: ({ children }) => <>{children}</>,
+                    table: ({ children }) => (
+                        <div className="overflow-x-auto -mx-1 px-1">
+                            <table>{children}</table>
+                        </div>
+                    ),
                 }}
             >
                 {content}

@@ -49,8 +49,8 @@ export default async function BlogDetailPage({ params }: Props) {
     }
 
     return (
-        <div className="flex flex-col gap-8  items-center">
-            <div className="md:w-[800px]">
+        <div className="flex flex-col gap-6 md:gap-8 items-center w-full">
+            <div className="w-full max-w-[800px] px-2 sm:px-4 md:px-0">
                 <BlogLanguageToggle
                     slug={slug}
                     availableLanguages={availableLanguages}

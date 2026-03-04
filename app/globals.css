@@ -175,22 +175,22 @@
 }
 
 .prose-custom h1 {
-  @apply mb-4 mt-8 text-2xl font-bold text-white;
+  @apply mb-3 mt-6 text-xl font-bold text-white sm:mb-4 sm:mt-8 sm:text-2xl;
 }
 .prose-custom h2 {
-  @apply mb-3 mt-6 text-xl font-semibold;
+  @apply mb-2 mt-5 text-lg font-semibold sm:mb-3 sm:mt-6 sm:text-xl;
 }
 .prose-custom h3 {
-  @apply mb-2 mt-5 text-lg font-semibold;
+  @apply mb-2 mt-4 text-base font-semibold sm:mt-5 sm:text-lg;
 }
 .prose-custom h4 {
-  @apply mb-2 mt-4 text-base font-semibold;
+  @apply mb-1.5 mt-3 text-sm font-semibold sm:mb-2 sm:mt-4 sm:text-base;
 }
 .prose-custom p {
-  @apply mb-4 leading-relaxed;
+  @apply mb-3 text-sm leading-relaxed sm:mb-4 sm:text-base;
 }
 .prose-custom a {
-  @apply text-primary underline decoration-primary/30 underline-offset-2 transition-colors hover:decoration-primary;
+  @apply text-primary underline decoration-primary/30 underline-offset-2 transition-colors hover:decoration-primary break-words;
 }
 .prose-custom strong {
   @apply font-semibold text-white;
@@ -199,38 +199,38 @@
   @apply italic;
 }
 .prose-custom ul {
-  @apply mb-4 ml-6 list-disc space-y-1;
+  @apply mb-3 ml-4 list-disc space-y-1 sm:mb-4 sm:ml-6;
 }
 .prose-custom ol {
-  @apply mb-4 ml-6 list-decimal space-y-1;
+  @apply mb-3 ml-4 list-decimal space-y-1 sm:mb-4 sm:ml-6;
 }
 .prose-custom li {
-  @apply text-white/80;
+  @apply text-sm text-white/80 sm:text-base;
 }
 .prose-custom blockquote {
-  @apply my-4 border-l-2 border-primary/30 pl-4 italic text-muted-foreground;
+  @apply my-3 border-l-2 border-primary/30 pl-3 italic text-muted-foreground text-sm sm:my-4 sm:pl-4 sm:text-base;
 }
 .prose-custom pre {
-  @apply my-4 overflow-x-auto rounded-lg border border-border/50 bg-card p-4 text-sm;
+  @apply my-3 overflow-x-auto rounded-lg border border-border/50 bg-card p-3 text-xs sm:my-4 sm:p-4 sm:text-sm;
 }
 .prose-custom code {
-  @apply rounded bg-secondary/50 px-1.5 py-0.5 text-sm font-medium text-white;
+  @apply rounded bg-secondary/50 px-1 py-0.5 text-xs font-medium text-white break-words sm:px-1.5 sm:text-sm;
 }
 .prose-custom pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 break-normal;
 }
 .prose-custom hr {
-  @apply my-8 border-border/30;
+  @apply my-6 border-border/30 sm:my-8;
 }
 .prose-custom img {
-  @apply my-4 rounded-lg;
+  @apply my-3 w-full rounded-lg sm:my-4;
 }
 .prose-custom table {
-  @apply my-4 w-full border-collapse;
+  @apply my-3 w-full border-collapse text-xs sm:my-4 sm:text-sm;
 }
 .prose-custom th {
-  @apply border border-border/50 bg-secondary/30 px-3 py-2 text-left text-sm font-semibold;
+  @apply border border-border/50 bg-secondary/30 px-2 py-1.5 text-left text-xs font-semibold sm:px-3 sm:py-2 sm:text-sm;
 }
 .prose-custom td {
-  @apply border border-border/50 px-3 py-2 text-sm;
+  @apply border border-border/50 px-2 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm;
 }

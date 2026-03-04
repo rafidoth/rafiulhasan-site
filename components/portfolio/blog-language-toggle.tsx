@@ -55,23 +55,24 @@ export function BlogLanguageToggle({
     const isBangla = activeLang === "bn"
 
     return (
-        <div className="flex flex-col gap-6">
-            <div className="flex flex justify-between">
+        <div className="flex flex-col gap-4 sm:gap-6">
+            <div className="flex items-center justify-between gap-3">
                 <Link
                     href="/blogs"
-                    className="group flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="group flex w-fit items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                     <ArrowLeft className="size-3 transition-transform group-hover:-translate-x-0.5" />
-                    Back to blogs
+                    <span className="hidden sm:inline">Back to blogs</span>
+                    <span className="sm:hidden">Back</span>
                 </Link>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                     {(["en", "bn"] as Language[]).map((lang) => (
                         <button
                             key={lang}
                             onClick={() => handleLanguageChange(lang)}
-                            className={`cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium transition-all ${activeLang === lang
-                                ? "bg-secondary text-primary-foreground "
+                            className={`cursor-pointer rounded-md px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm font-medium transition-all ${activeLang === lang
+                                ? "bg-secondary text-primary-foreground"
                                 : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                                 }`}
                         >
@@ -81,7 +82,7 @@ export function BlogLanguageToggle({
                 </div>
             </div>
 
-            <h1 className="w-full flex justify-center text-3xl font-bold text-primary font-bangla">
+            <h1 className="w-full flex justify-center text-xl sm:text-2xl md:text-3xl font-bold text-primary font-bangla text-center leading-tight px-1">
                 {activePost?.meta.title}
             </h1>
 
@@ -89,7 +90,7 @@ export function BlogLanguageToggle({
 
             {hasContent ? (
                 <div
-                    className={`flex flex-col gap-6 ${isBangla ? "font-bangla" : ""}`}
+                    className={`flex flex-col gap-4 sm:gap-6 ${isBangla ? "font-bangla" : ""}`}
                     lang={isBangla ? "bn" : "en"}
                 >
 
@@ -97,8 +98,8 @@ export function BlogLanguageToggle({
                     <MarkdownRenderer content={activePost.content} className="font-bangla" />
                 </div>
             ) : (
-                <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">
-                    <p className="text-muted-foreground">
+                <div className="rounded-lg border border-border/50 bg-card/50 p-4 sm:p-8 text-center">
+                    <p className="text-sm sm:text-base text-muted-foreground">
                         Sorry, this article is only available in{" "}
                         {fallbackLang ? (
                             <button
