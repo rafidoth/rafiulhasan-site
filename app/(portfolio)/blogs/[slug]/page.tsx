@@ -49,14 +49,15 @@ export default async function BlogDetailPage({ params }: Props) {
     }
 
     return (
-        <div className="flex flex-col gap-8  ">
-
-            <BlogLanguageToggle
-                slug={slug}
-                availableLanguages={availableLanguages}
-                defaultLang={defaultLang}
-                posts={posts}
-            />
+        <div className="flex flex-col gap-8  items-center">
+            <div className="md:w-[800px]">
+                <BlogLanguageToggle
+                    slug={slug}
+                    availableLanguages={availableLanguages}
+                    defaultLang={defaultLang}
+                    posts={posts}
+                />
+            </div>
         </div>
     )
 }
