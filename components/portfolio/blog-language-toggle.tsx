@@ -81,7 +81,7 @@ export function BlogLanguageToggle({
                 </div>
             </div>
 
-            <h1 className="w-full flex justify-center text-3xl font-bold text-primary">
+            <h1 className="w-full flex justify-center text-3xl font-bold text-primary font-bangla">
                 {activePost?.meta.title}
             </h1>
 
